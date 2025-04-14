@@ -30,7 +30,7 @@ library(tidyverse)
 
 ```{r}
 # load data
-epifauna <- read.csv("epifauna.csv") 
+epifauna <- read.csv("Input/epifauna.csv") 
 ```
 
 ### Description of dataset *epifauna*
@@ -43,6 +43,7 @@ epifauna <- read.csv("epifauna.csv")
 *pent_loss* = loss of Pentidotea resecata during experiment
 *fish1_mass* = weight of fish 1 in a replicate tank
 *fish2_mass* = weight of fish 2 in a replicate tank
+*fish_mass_tot* = total weight of fish in replicate tank
 *tank_vol* = volume of tank
 
 
