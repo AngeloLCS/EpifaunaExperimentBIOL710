@@ -1,0 +1,257 @@
+---
+title: "Individual Project"
+author: "Angelo LaCommare-Soto"
+date: "`r Sys.Date()`"
+output:
+  pdf_document: default
+  html_document: default
+---
+## Project Title: 
+The effects of seasonal fish assemblages on eelgrass (Zostera marina) bed health within the impacted San Francisco Bay Estuary 
+
+### Introduction:
+Global seagrass habitat has declined by 19% since 1880 (Dunic et al., 2021). In San Francisco Bay (SFB), the native seagrass commonly known as eelgrass (*Zostera marina*) faces harmful eutrophication-induced microalgal blooms, along with intense mechanical damage, biological invasion, and pollution (Kelly et al., 2019; Cohen & Carlton, 1998; Fonseca et al., 2017). The high ecological value of eelgrass beds combined with their dwindling coverage has prompted scientists to investigate how rapidly changing environmental conditions will affect the suite of organisms that benefit from and contribute to the health of eelgrass. 
+
+Local studies have demonstrated that fishes can improve eelgrass performance (Best & Stachowicz, 2012; Carr & Boyer, 2014) via a trophic cascade in which a fish predator directly consumes or alters the grazing behavior of an epifaunal invertebrate that consumes eelgrass leaves, such as *Ampithoe valida* (Harper et al., 2022; Lewis & Boyer, 2014; Reynolds et al., 2012; Ayala, 2021). Current studies are investigating the effects of climate change-induced carbon dioxide increases in baywater predicted by 2100 on the herbivorous feeding preferences of common epifauna like *A. valida*. And while the community composition of epifauna in eelgrass beds in SFB has recently been examined (Ayala, 2021), informing researchers about present day conditions, the same cannot be said about the community composition of fish, as the last monitoring of fish in littoral areas occurred in 1987 (Baxter et al., 1999). 
+
+As climate change continues to alter baywater conditions, community fish 
+assemblages and trophic interactions must be evaluated to establish a baseline of the top-down effects of fish on the eelgrass habitat. Therefore, my study will pair environmental DNA (eDNA) and beach seining to assess the composition of fish communities within eelgrass beds. The community survey phase will also be intertwined with a feeding experiment phase that will elucidate trophic interactions between fishes and epifauna throughout changing seasonal conditions. My study will give coastal managers insight into the role that water conditions, food availability, and nursery fish communities play in determining the performance of crucial eelgrass habitat now and under conditions brought 
+about by climate change. 
+
+### Guiding Question:
+What is the composition of the fish communities in eelgrass beds over a seasonal cycle and how are they involved in the food web of the eelgrass system in SFB?
+
+### Aims:
+1. Ascertain how fish assemblages and epifaunal invertebrate communities compare 
+in eelgrass beds over a seasonal cycle and across SFB.
+2. Determine the relative seasonal consumption rates of epifauna among some of the most common fishes in eelgrass beds across SFB.
+
+### Statistical Analysis
+
+For my statistical analysis assignment, I will focus on my second aim. Below is some of the work I have completed to simulate the data values that I can expect during my experiments. More information on my experiments is available in the dataset card available here: https://github.com/AngeloLCS/EpifaunaExperimentBIOL710/blob/070cc3c0aeba8b0e9b3f4680e01527374d516e12/RCode/Input/DatasetCard.md 
+
+```{r}
+library(tidyverse)
+getwd()
+```
+
+```{r}
+#vector <- rnorm(100, mean = 1.5, sd = 0.7)
+#vector
+
+ctrl_gamm <- sample(0:5, 27, replace = TRUE)
+ctrl_capr <- sample(0:10, 27, replace = TRUE)
+ctrl_pent <- sample(0:3, 27, replace = TRUE)
+
+ctrl_gamm <- as.matrix(ctrl_gamm)
+ctrl_capr <- as.matrix(ctrl_capr)
+ctrl_pent <- as.matrix(ctrl_pent)
+
+```
+
+```{r}
+# tank <- c("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "Ñ", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")
+# 
+# tank_rand1 <- sample(tank, 27)
+# tank_rand1
+# tank_rand2 <- sample(tank, 27)
+# tank_rand3 <- sample(tank, 27)
+# tank_rand4 <- sample(tank, 27)
+# tank_rand5 <- sample(tank, 27)
+# tank_rand6 <- sample(tank, 27)
+# tank_rand7 <- sample(tank, 27)
+# tank_rand8 <- sample(tank, 27)
+# tank_rand9 <- sample(tank, 27)
+# 
+# tank_rand <- rbind(tank_rand1, tank_rand2, tank_rand3, tank_rand4, tank_rand5, tank_rand6, tank_rand7, tank_rand8, tank_rand9)
+# tank_rand
+# tank_rand <- as.matrix(c(apply(tank_rand, 1, c)))
+#for (i in tank) {
+#  print(sample(tank, 27))
+#}
+```
+
+
+```{r}
+gamm <- sample(1:50, 243, replace = TRUE)
+capr <- sample(1:50, 243, replace = TRUE)
+pent <- sample(0:10, 243, replace = TRUE)
+
+gamm <- as.matrix(gamm)
+capr <- as.matrix(capr)
+pent <- as.matrix(pent)
+```
+
+```{r}
+sp_cym <- runif(n=230, min=3.5, max=10)
+sp_lept <- runif(n=27, min=3.7, max=11.4)
+sp_hyps <- runif(n=27, min=3.3, max=9.3)
+sp_pho <- runif(n=27, min=1.4, max=5.9)
+
+sp_cym <- as.matrix(sp_cym)
+sp_lept <- as.matrix(sp_lept)
+sp_hyps <- as.matrix(sp_hyps)
+sp_pho <- as.matrix(sp_pho)
+
+```
+
+```{r}
+rec.list <- function(len){
+  if(length(len) == 1){
+    vector("list", len)
+  } else {
+    lapply(1:len[1], function(...) rec.list(len[-1]))
+  }
+}
+```
+
+```{r}
+set.seed(5094)
+
+season <- c('spring', 'summer', 'fall')
+tank <- c("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "Ñ", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")
+treatment <- c("control", "control","control","C_aggregata", "C_aggregata","C_aggregata","2C_aggregata", "2C_aggregata","2C_aggregata","L_armatus", "L_armatus","L_armatus", "2L_armatus","2L_armatus","2L_armatus", "H_guttulata", "H_guttulata","H_guttulata","2H_guttulata","2H_guttulata","2H_guttulata", "P_ornata","P_ornata","P_ornata", "2P_ornata", "2P_ornata", "2P_ornata")
+
+Data_full <- rec.list(c(length(season), 3, length(tank)))
+
+for (x in 1:length(season)) {
+  for (u in 1:3){#day
+    for (t in 1:length(tank)){
+    
+ pent_loss <- sample(1:10, 1, replace=TRUE)
+ gamm_loss <- sample(1:50, 1, replace=TRUE)
+ capr_loss <- sample(1:50, 1, replace=TRUE)
+ treat <- sample(treatment, 1, replace=FALSE)
+ # fish1_mass<-
+ #   if (treat == 'control'){
+ #   NA
+ #   } else if (season == 'spring' & treat == 'C_aggregata' ){
+ #     runif(n=1, min=3.5, max=10)
+ #   } else {
+ #     10
+ #   }
+ 
+ Data_full[[x]][[u]][[t]] <- data_frame(
+                              'pent_loss'=pent_loss,
+                              'gamm_loss'=gamm_loss,
+                              'capr_loss'= capr_loss, 
+                              'treatment' = treat)#,
+                              # 'fish1_mass' = fish1_mass)
+      } #tank
+    names(Data_full[[x]][[u]]) <- tank
+    } #day
+  } #season
+names(Data_full) <- season
+
+
+
+Test <- unlist(Data_full)
+
+Test2 <- data.frame(Reduce(rbind, Data_full))
+
+Test3 <- ldply(Data_full, data_frame())
+```
+
+```{r}
+# Importing Data
+epifauna <- read.csv('epifauna.csv')
+str(epifauna)
+```
+
+```{r}
+# Exploring distribution of data of interest (fish biomass and epifaunal consumption)
+gamm_f <- ggplot(epifauna, aes(x=gamm_loss))+
+  geom_histogram()
+gamm_f
+
+capr_f <- ggplot(epifauna, aes(x=capr_loss))+
+  geom_histogram()
+capr_f
+
+pent_f <- ggplot(epifauna, aes(x=pent_loss))+
+  geom_histogram()
+pent_f
+
+fishbm_f <- ggplot(epifauna, aes(x=fish_mass_tot))+
+  geom_histogram()
+fishbm_f
+```
+
+```{r}
+#Statistical tests
+#GLM with Poisson family
+gamm_glm <- glm(gamm_loss ~ treatment*fish_mass_tot, family = "poisson", data = epifauna)
+summary(gamm_glm)
+
+capr_glm <- glm(capr_loss ~ treatment*fish_mass_tot, family = "poisson", data = epifauna)
+summary(capr_glm)
+
+pent_glm <- glm(pent_loss ~ treatment*fish_mass_tot, family = "poisson", data = epifauna)
+summary(pent_glm)
+```
+
+```{r}
+#Property plots 
+# plot(gamm_glm)
+# plot(capr_glm)
+# plot(pent_glm)
+```
+
+```{r}
+#Figure
+gamm_f2 <- ggplot(epifauna, aes(x = treatment, y = gamm_loss)) +
+  geom_boxplot(alpha = 0.6) +
+  labs(
+    x = "Treatment",
+    y = "Loss of Gammarids") +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
+gamm_f2
+
+capr_f2 <- ggplot(epifauna, aes(x = treatment, y = capr_loss)) +
+  geom_boxplot(alpha = 0.6) +
+  labs(
+    x = "Treatment",
+    y = "Loss of Caprellids") +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
+capr_f2
+
+pent_f2 <- ggplot(epifauna, aes(x = treatment, y = pent_loss)) +
+  geom_boxplot(alpha = 0.6) +
+  labs(
+    x = "Treatment",
+    y = "Loss of Pentidotea") +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
+pent_f2
+```
+
+
+### References:
+Ayala, G. S. 2021. Eelgrass (*Zostera marina*) invertebrate community recovery following an extreme low salinity event. Master’s thesis. San Francisco State University, San Francisco, CA. 
+
+Baxter, R., Hieb, K., DeLeon, S., Fleming, K., & Orsi, J. (1999). Report on the 1980-1995 Fish, Shrimp, and Crab Sampling in the San Francisco Estuary, California. 
+https://nrm.dfg.ca.gov/FileHandler.ashx?DocumentID=227169 [download link] 
+
+Best, R. J. & Stachowicz, J.J. 2012. “Trophic Cascades in Seagrass Meadows Depend on Mesograzer Variation in Feeding Rates, Predation Susceptibility, and Abundance.” *Marine Ecology Progress Series* 456 (June): 29–42. https://doi.org/10.3354/meps09678. 
+
+Carr, L. A. & Boyer, K. E. 2014. “Variation at Multiple Trophic Levels Mediates a Novel Seagrass-Grazer Interaction.” *Marine Ecology Progress Series* 508 (August): 117–28. https://doi.org/10.3354/meps10855.
+
+Cohen, A. N. & Carlton, J. T. 1998. “Accelerating Invasion Rate in a Highly Invaded Estuary.” *Science* 279 (5350): 555–58. https://doi.org/10.1126/science.279.5350.555.
+
+Dunic, J. C., Brown, C. J., Connolly, R. M., Turschwell, M. P., & Côté, I. M. 2021. “Long Term Declines and Recovery of Meadow Area Across the World’s Seagrass Bioregions.” *Global Change Biology* 27 (17): 4096–4109. https://doi.org/10.1111/gcb.15684. 
+
+Fonseca, M., Piniak, G. A., & Cosentino-Manning, N. 2017. “Susceptibility of Seagrass to Oil Spills: A Case Study with Eelgrass, Zostera Marina in San Francisco Bay, USA.” *Marine Pollution Bulletin* 115 (1-2): 29–38. 
+https://doi.org/10.1016/j.marpolbul.2016.11.029. 
+
+Harper, K. E., Scheinberg, L. A., Boyer, K. E., & Sotka, E. E. 2022. “Global Distribution of Cryptic Native, Introduced and Hybrid Lineages in the Widespread Estuarine Amphipod *Ampithoe valida*.” *Conservation Genetics* 23 (4): 791–806. 
+https://doi.org/10.1007/s10592-022-01452-8. 
+
+Kelly, J. J., Orr, D., & Takekawa, J. Y. 2019. “Quantification of Damage to Eelgrass (*Zostera marina*) Beds and Evidence-Based Management Strategies for Boats Anchoring in San Francisco Bay.” *Environmental Management* 64 (1): 20–26. 
+https://doi.org/10.1007/s00267-019-01169-4. 
+
+Lewis, J. T. & Boyer, K. E. 2014. “Grazer Functional Roles, Induced Defenses, and Indirect Interactions: Implications for Eelgrass Restoration in San Francisco Bay.” *Diversity* 6 (4): 751–70. https://doi.org/10.3390/d6040751.
+
+Reynolds, L. K., Carr, L. A., & Boyer, K. E. 2012. “A Non-Native Amphipod Consumes Eelgrass Inflorescences in San Francisco Bay.” *Marine Ecology Progress Series* 451 (April): 107–18. https://doi.org/10.3354/meps09569. 
+
+
+
+

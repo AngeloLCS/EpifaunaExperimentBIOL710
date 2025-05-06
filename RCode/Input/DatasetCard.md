@@ -7,7 +7,8 @@ These data of epifauna consumption were randomly generated using R Studio as a s
 
 ### Description of Dataset *epifauna*
 
-- *date* = day on which a run of experiments was completed
+- *season* = time of year in which runs of experiments were carried out
+- *day* = day within each season on which a run of experiments was completed
 - *tank* = tank identification, used to keep track of potential tank effects
 - *treatment* = species of fish predators singly and in pairs: Cymatogaster aggregata, Leptocottus armatus, Hypsopsetta guttulata, Pholis ornata, Paralichthys californicus
 - *gamm_loss* = loss of gammarid amphipods during experiment
