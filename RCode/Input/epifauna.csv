@@ -1,7 +1,7 @@
 season,day,tank,treatment,gamm_loss,capr_loss,pent_loss,fish1_mass,fish2_mass,fish_mass_tot,tank_vol
-spring,1,C,2_aControl,5,9,3,NA,NA,NA,0.04
-spring,1,N,2_aControl,4,0,0,NA,NA,NA,0.04
-spring,1,U,2_aControl,4,10,0,NA,NA,NA,0.04
+spring,1,C,Control,5,9,3,NA,NA,NA,0.04
+spring,1,N,Control,4,0,0,NA,NA,NA,0.04
+spring,1,U,Control,4,10,0,NA,NA,NA,0.04
 spring,1,S,C. aggregata,27,27,1,9.39,NA,9.39,0.04
 spring,1,J,C. aggregata,6,26,2,8.51,NA,8.51,0.04
 spring,1,G,C. aggregata,1,32,3,8.37,NA,8.37,0.04
@@ -26,9 +26,9 @@ spring,1,D,P. ornata,26,21,2,10.67,NA,10.67,0.04
 spring,1,M,2_P. ornata,23,16,1,4.31,2.57,6.88,0.04
 spring,1,H,2_P. ornata,2,35,7,5.28,1.56,6.84,0.04
 spring,1,T,2_P. ornata,27,10,2,10.2,5.49,15.69,0.04
-spring,2,J,2_aControl,5,5,2,NA,NA,NA,0.04
-spring,2,A,2_aControl,1,8,1,NA,NA,NA,0.04
-spring,2,L,2_aControl,5,3,3,NA,NA,NA,0.04
+spring,2,J,Control,5,5,2,NA,NA,NA,0.04
+spring,2,A,Control,1,8,1,NA,NA,NA,0.04
+spring,2,L,Control,5,3,3,NA,NA,NA,0.04
 spring,2,U,C. aggregata,18,39,1,7.47,NA,7.47,0.04
 spring,2,K,C. aggregata,1,43,1,8.17,NA,8.17,0.04
 spring,2,C,C. aggregata,43,17,2,9.85,NA,9.85,0.04
@@ -53,9 +53,9 @@ spring,2,R,P. ornata,3,50,4,8.27,NA,8.27,0.04
 spring,2,E,2_P. ornata,28,8,4,4.67,3.9,8.57,0.04
 spring,2,N,2_P. ornata,28,19,8,3.54,4.33,7.87,0.04
 spring,2,B,2_P. ornata,46,24,4,4.45,2.92,7.37,0.04
-spring,3,K,2_aControl,3,9,1,NA,NA,NA,0.04
-spring,3,N,2_aControl,0,6,2,NA,NA,NA,0.04
-spring,3,W,2_aControl,0,4,0,NA,NA,NA,0.04
+spring,3,K,Control,3,9,1,NA,NA,NA,0.04
+spring,3,N,Control,0,6,2,NA,NA,NA,0.04
+spring,3,W,Control,0,4,0,NA,NA,NA,0.04
 spring,3,S,C. aggregata,24,42,4,6.17,NA,6.17,0.04
 spring,3,P,C. aggregata,33,23,0,6.17,NA,6.17,0.04
 spring,3,Q,C. aggregata,6,44,8,4.29,NA,4.29,0.04
@@ -80,9 +80,9 @@ spring,3,T,P. ornata,41,17,3,5.17,NA,5.17,0.04
 spring,3,F,2_P. ornata,39,34,8,8.49,5.25,13.75,0.04
 spring,3,E,2_P. ornata,33,13,7,6.37,3.9,10.27,0.04
 spring,3,I,2_P. ornata,6,7,2,6.52,5.09,11.61,0.04
-summer,1,I,2_aControl,3,4,3,NA,NA,NA,0.04
-summer,1,Ñ,2_aControl,5,7,0,NA,NA,NA,0.04
-summer,1,R,2_aControl,1,2,3,NA,NA,NA,0.04
+summer,1,I,Control,3,4,3,NA,NA,NA,0.04
+summer,1,Ñ,Control,5,7,0,NA,NA,NA,0.04
+summer,1,R,Control,1,2,3,NA,NA,NA,0.04
 summer,1,N,C. aggregata,50,30,3,3.96,NA,3.96,0.04
 summer,1,J,C. aggregata,10,1,2,5.82,NA,5.82,0.04
 summer,1,X,C. aggregata,2,44,4,6.52,NA,6.52,0.04
@@ -107,9 +107,9 @@ summer,1,U,P. ornata,23,14,5,9.45,NA,9.45,0.04
 summer,1,K,2_P. ornata,46,15,4,9.86,2.2,12.06,0.04
 summer,1,W,2_P. ornata,22,11,2,6.18,3.3,9.48,0.04
 summer,1,M,2_P. ornata,48,49,6,5.13,1.56,6.69,0.04
-summer,2,M,2_aControl,4,3,3,NA,NA,NA,0.04
-summer,2,S,2_aControl,2,10,3,NA,NA,NA,0.04
-summer,2,H,2_aControl,3,0,1,NA,NA,NA,0.04
+summer,2,M,Control,4,3,3,NA,NA,NA,0.04
+summer,2,S,Control,2,10,3,NA,NA,NA,0.04
+summer,2,H,Control,3,0,1,NA,NA,NA,0.04
 summer,2,B,C. aggregata,46,2,1,9.9,NA,9.9,0.04
 summer,2,U,C. aggregata,37,20,1,9.14,NA,9.14,0.04
 summer,2,N,C. aggregata,5,43,10,5.53,NA,5.53,0.04
@@ -134,9 +134,9 @@ summer,2,Z,P. ornata,38,40,6,7.67,NA,7.67,0.04
 summer,2,C,2_P. ornata,4,21,5,8.5,5.93,14.43,0.04
 summer,2,Q,2_P. ornata,4,39,8,8.02,6.74,14.77,0.04
 summer,2,I,2_P. ornata,2,47,8,9.01,5.06,14.07,0.04
-summer,3,D,2_aControl,1,9,3,NA,NA,NA,0.04
-summer,3,A,2_aControl,4,2,3,NA,NA,NA,0.04
-summer,3,Z,2_aControl,2,0,1,NA,NA,NA,0.04
+summer,3,D,Control,1,9,3,NA,NA,NA,0.04
+summer,3,A,Control,4,2,3,NA,NA,NA,0.04
+summer,3,Z,Control,2,0,1,NA,NA,NA,0.04
 summer,3,Y,C. aggregata,18,11,1,6.42,NA,6.42,0.04
 summer,3,L,C. aggregata,6,2,9,9.36,NA,9.36,0.04
 summer,3,T,C. aggregata,12,13,8,8.19,NA,8.19,0.04
@@ -161,9 +161,9 @@ summer,3,O,P. ornata,36,35,9,8.22,NA,8.22,0.04
 summer,3,Ñ,2_P. ornata,40,8,1,9.21,5.86,15.07,0.04
 summer,3,W,2_P. ornata,50,1,2,9.07,3.62,12.69,0.04
 summer,3,V,2_P. ornata,13,15,4,5.74,8.1,13.84,0.04
-fall,1,P,2_aControl,5,0,0,NA,NA,NA,0.04
-fall,1,C,2_aControl,4,0,3,NA,NA,NA,0.04
-fall,1,O,2_aControl,3,8,2,NA,NA,NA,0.04
+fall,1,P,Control,5,0,0,NA,NA,NA,0.04
+fall,1,C,Control,4,0,3,NA,NA,NA,0.04
+fall,1,O,Control,3,8,2,NA,NA,NA,0.04
 fall,1,T,C. aggregata,50,43,9,4.62,NA,4.62,0.04
 fall,1,L,C. aggregata,13,23,5,9.69,NA,9.69,0.04
 fall,1,H,C. aggregata,9,12,7,9.45,NA,9.45,0.04
@@ -188,9 +188,9 @@ fall,1,W,P. ornata,50,3,10,7,NA,7,0.04
 fall,1,R,2_P. ornata,28,17,9,5.83,9.5,15.33,0.04
 fall,1,Y,2_P. ornata,50,41,2,4.07,6.67,10.74,0.04
 fall,1,B,2_P. ornata,20,35,2,4.86,8.24,13.1,0.04
-fall,2,B,2_aControl,5,3,0,NA,NA,NA,0.04
-fall,2,J,2_aControl,0,7,0,NA,NA,NA,0.04
-fall,2,W,2_aControl,5,9,0,NA,NA,NA,0.04
+fall,2,B,Control,5,3,0,NA,NA,NA,0.04
+fall,2,J,Control,0,7,0,NA,NA,NA,0.04
+fall,2,W,Control,5,9,0,NA,NA,NA,0.04
 fall,2,U,C. aggregata,31,42,6,9.66,NA,9.66,0.04
 fall,2,H,C. aggregata,19,29,6,7,NA,7,0.04
 fall,2,A,C. aggregata,2,13,8,9.42,NA,9.42,0.04
@@ -215,9 +215,9 @@ fall,2,G,P. ornata,10,12,6,5.2,NA,5.2,0.04
 fall,2,P,2_P. ornata,8,14,3,3.37,4.96,8.33,0.04
 fall,2,F,2_P. ornata,41,49,5,6.49,6.02,12.51,0.04
 fall,2,O,2_P. ornata,41,31,6,7.61,4.92,12.53,0.04
-fall,3,J,2_aControl,2,7,3,NA,NA,NA,0.04
-fall,3,K,2_aControl,2,2,2,NA,NA,NA,0.04
-fall,3,T,2_aControl,2,1,3,NA,NA,NA,0.04
+fall,3,J,Control,2,7,3,NA,NA,NA,0.04
+fall,3,K,Control,2,2,2,NA,NA,NA,0.04
+fall,3,T,Control,2,1,3,NA,NA,NA,0.04
 fall,3,H,C. aggregata,15,16,7,8.46,NA,8.46,0.04
 fall,3,N,C. aggregata,34,10,1,5.38,NA,5.38,0.04
 fall,3,O,C. aggregata,11,21,0,5.63,NA,5.63,0.04

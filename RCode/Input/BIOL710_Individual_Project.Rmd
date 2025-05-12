@@ -28,7 +28,14 @@ in eelgrass beds over a seasonal cycle and across SFB.
 
 ### Statistical Analysis
 
-For my statistical analysis assignment, I will focus on my second aim. Below is some of the work I have completed to simulate the data values that I can expect during my experiments. More information on my experiments is available in the dataset card available here: https://github.com/AngeloLCS/EpifaunaExperimentBIOL710/blob/070cc3c0aeba8b0e9b3f4680e01527374d516e12/RCode/Input/DatasetCard.md 
+For my statistical analysis assignment, I will focus on my second aim. 
+
+H0: There is no difference in consumption rates of epifauna among seasons and fish individuals per species. 
+HA: In general, there will be higher consumption rates of epifauna during summer and fall when higher water temperatures increase metabolic rates and larger prey abundances create an environment for reduced resource partitioning, which allow fishes to have more generalized feeding preferences. The species and number of individuals per tank will demonstrate variable epifaunal consumption rates depending on the species-specific prey capture strategies. 
+
+I determined relatively early on that a generalized linear model would be the best type of model to analyze my data given the bounded counts that my experiments entail. Using a GLM under Poisson assumptions, I created a model for each epifaunal consumption variable under several predictor variables, such as fish_mass_tot, tank, season, and of course treatment. I noticed that AIC scores dropped as I included the interaction of more variables. Ultimately, after re-reading my hypothesis for this project, I decided to settle on a model that describes the interaction between season and treatment on the consumption of epifauna without much focus on the magnitude of the AIC score since these predictors fell more in line with my scientific question. While analyzing the model output, I noticed that solo P. ornata individuals consumed, on average, many more gammarid amphipods during summer relative to other seasons for the same treatment and the overall control. In order to showcase this finding, I envisioned a boxplot demonstrating consumption counts for gammarid amphipods subset by season, with the summer P. ornata box and whisker plot not overlapping with the control treatment and the other seasons of P. ornata treatments. Given that this worked for gammarid amphipods and to maintain consistency, I figured I would also apply the same figure outline for both caprellid amphipod and Pentidotea resecata loss. 
+
+Below the references is some of the work I have completed to simulate the data values that I can expect during my experiments. More information on my experiments and simulated dataset is available in the dataset card available here: https://github.com/AngeloLCS/EpifaunaExperimentBIOL710/blob/070cc3c0aeba8b0e9b3f4680e01527374d516e12/RCode/Input/DatasetCard.md 
 
 ```{r}
 library(tidyverse)
@@ -36,125 +43,8 @@ getwd()
 ```
 
 ```{r}
-#vector <- rnorm(100, mean = 1.5, sd = 0.7)
-#vector
-
-ctrl_gamm <- sample(0:5, 27, replace = TRUE)
-ctrl_capr <- sample(0:10, 27, replace = TRUE)
-ctrl_pent <- sample(0:3, 27, replace = TRUE)
-
-ctrl_gamm <- as.matrix(ctrl_gamm)
-ctrl_capr <- as.matrix(ctrl_capr)
-ctrl_pent <- as.matrix(ctrl_pent)
-
-```
-
-```{r}
-# tank <- c("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "Ñ", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")
-# 
-# tank_rand1 <- sample(tank, 27)
-# tank_rand1
-# tank_rand2 <- sample(tank, 27)
-# tank_rand3 <- sample(tank, 27)
-# tank_rand4 <- sample(tank, 27)
-# tank_rand5 <- sample(tank, 27)
-# tank_rand6 <- sample(tank, 27)
-# tank_rand7 <- sample(tank, 27)
-# tank_rand8 <- sample(tank, 27)
-# tank_rand9 <- sample(tank, 27)
-# 
-# tank_rand <- rbind(tank_rand1, tank_rand2, tank_rand3, tank_rand4, tank_rand5, tank_rand6, tank_rand7, tank_rand8, tank_rand9)
-# tank_rand
-# tank_rand <- as.matrix(c(apply(tank_rand, 1, c)))
-#for (i in tank) {
-#  print(sample(tank, 27))
-#}
-```
-
-
-```{r}
-gamm <- sample(1:50, 243, replace = TRUE)
-capr <- sample(1:50, 243, replace = TRUE)
-pent <- sample(0:10, 243, replace = TRUE)
-
-gamm <- as.matrix(gamm)
-capr <- as.matrix(capr)
-pent <- as.matrix(pent)
-```
-
-```{r}
-sp_cym <- runif(n=230, min=3.5, max=10)
-sp_lept <- runif(n=27, min=3.7, max=11.4)
-sp_hyps <- runif(n=27, min=3.3, max=9.3)
-sp_pho <- runif(n=27, min=1.4, max=5.9)
-
-sp_cym <- as.matrix(sp_cym)
-sp_lept <- as.matrix(sp_lept)
-sp_hyps <- as.matrix(sp_hyps)
-sp_pho <- as.matrix(sp_pho)
-
-```
-
-```{r}
-rec.list <- function(len){
-  if(length(len) == 1){
-    vector("list", len)
-  } else {
-    lapply(1:len[1], function(...) rec.list(len[-1]))
-  }
-}
-```
-
-```{r}
-set.seed(5094)
-
-season <- c('spring', 'summer', 'fall')
-tank <- c("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "Ñ", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")
-treatment <- c("control", "control","control","C_aggregata", "C_aggregata","C_aggregata","2C_aggregata", "2C_aggregata","2C_aggregata","L_armatus", "L_armatus","L_armatus", "2L_armatus","2L_armatus","2L_armatus", "H_guttulata", "H_guttulata","H_guttulata","2H_guttulata","2H_guttulata","2H_guttulata", "P_ornata","P_ornata","P_ornata", "2P_ornata", "2P_ornata", "2P_ornata")
-
-Data_full <- rec.list(c(length(season), 3, length(tank)))
-
-for (x in 1:length(season)) {
-  for (u in 1:3){#day
-    for (t in 1:length(tank)){
-    
- pent_loss <- sample(1:10, 1, replace=TRUE)
- gamm_loss <- sample(1:50, 1, replace=TRUE)
- capr_loss <- sample(1:50, 1, replace=TRUE)
- treat <- sample(treatment, 1, replace=FALSE)
- # fish1_mass<-
- #   if (treat == 'control'){
- #   NA
- #   } else if (season == 'spring' & treat == 'C_aggregata' ){
- #     runif(n=1, min=3.5, max=10)
- #   } else {
- #     10
- #   }
- 
- Data_full[[x]][[u]][[t]] <- data_frame(
-                              'pent_loss'=pent_loss,
-                              'gamm_loss'=gamm_loss,
-                              'capr_loss'= capr_loss, 
-                              'treatment' = treat)#,
-                              # 'fish1_mass' = fish1_mass)
-      } #tank
-    names(Data_full[[x]][[u]]) <- tank
-    } #day
-  } #season
-names(Data_full) <- season
-
-
-
-Test <- unlist(Data_full)
-
-Test2 <- data.frame(Reduce(rbind, Data_full))
-
-Test3 <- ldply(Data_full, data_frame())
-```
-
-```{r}
 # Importing Data
-epifauna <- read.csv('epifauna.csv')
+epifauna <- read.csv('epifauna.csv', stringsAsFactors = TRUE )
 str(epifauna)
 ```
 
@@ -162,31 +52,43 @@ str(epifauna)
 # Exploring distribution of data of interest (fish biomass and epifaunal consumption)
 gamm_f <- ggplot(epifauna, aes(x=gamm_loss))+
   geom_histogram()
-gamm_f
+#gamm_f
 
 capr_f <- ggplot(epifauna, aes(x=capr_loss))+
   geom_histogram()
-capr_f
+#capr_f
 
 pent_f <- ggplot(epifauna, aes(x=pent_loss))+
   geom_histogram()
-pent_f
+#pent_f
 
 fishbm_f <- ggplot(epifauna, aes(x=fish_mass_tot))+
   geom_histogram()
-fishbm_f
+#fishbm_f
 ```
 
 ```{r}
-#Statistical tests
-#GLM with Poisson family
-gamm_glm <- glm(gamm_loss ~ treatment*fish_mass_tot, family = "poisson", data = epifauna)
+# Releveling variables for simpler model output interpretation
+epifauna$season <- fct_relevel(epifauna$season, 'spring', 'summer')
+epifauna$treatment <- relevel(epifauna$treatment, 'Control')
+```
+
+```{r}
+#Statistical tests gammarid amphipods
+#GLM with Poisson family due to count data and right skewness of the data
+gamm_glm <- glm(gamm_loss ~ treatment*season, family = "poisson", data = epifauna)
 summary(gamm_glm)
+```
 
-capr_glm <- glm(capr_loss ~ treatment*fish_mass_tot, family = "poisson", data = epifauna)
+```{r}
+#Statistical tests caprellid amphipods
+capr_glm <- glm(capr_loss ~ treatment*season, family = "poisson", data = epifauna)
 summary(capr_glm)
+```
 
-pent_glm <- glm(pent_loss ~ treatment*fish_mass_tot, family = "poisson", data = epifauna)
+```{r}
+#Statistical tests pentidotea isopods
+pent_glm <- glm(pent_loss ~ treatment*season, family = "poisson", data = epifauna)
 summary(pent_glm)
 ```
 
@@ -198,29 +100,45 @@ summary(pent_glm)
 ```
 
 ```{r}
-#Figure
-gamm_f2 <- ggplot(epifauna, aes(x = treatment, y = gamm_loss)) +
-  geom_boxplot(alpha = 0.6) +
+#Figures
+gamm_f2 <- ggplot(epifauna, aes(x = treatment, y = gamm_loss, fill=season)) +
+  geom_boxplot(alpha = 0.8) +
+  scale_fill_manual(
+    values=c('#DC267F', '#FE6100', '#FFB000'),
+    label =c('Spring', 'Summer', 'Fall')
+  )+
   labs(
     x = "Treatment",
-    y = "Loss of Gammarids") +
+    y = "Loss of Gammarids", 
+    fill = 'Season') +
   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
 gamm_f2
 
-capr_f2 <- ggplot(epifauna, aes(x = treatment, y = capr_loss)) +
-  geom_boxplot(alpha = 0.6) +
+capr_f2 <- ggplot(epifauna, aes(x = treatment, y = capr_loss, fill=season)) +
+  geom_boxplot(alpha = 0.8) +
+  scale_fill_manual(
+    values=c('#DC267F', '#FE6100', '#FFB000'),
+    label =c('Spring', 'Summer', 'Fall')
+  )+
   labs(
     x = "Treatment",
-    y = "Loss of Caprellids") +
+    y = "Loss of Caprellids", 
+    fill = 'Season') +
   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
 capr_f2
 
-pent_f2 <- ggplot(epifauna, aes(x = treatment, y = pent_loss)) +
-  geom_boxplot(alpha = 0.6) +
+pent_f2 <- ggplot(epifauna, aes(x = treatment, y = pent_loss, fill=season)) +
+  geom_boxplot(alpha = 0.8) +
+  scale_fill_manual(
+    values=c('#DC267F', '#FE6100', '#FFB000'),
+    label =c('Spring', 'Summer', 'Fall')
+  )+
   labs(
     x = "Treatment",
-    y = "Loss of Pentidotea") +
-  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
+    y = "Loss of Pentidotea resecata", 
+    fill = 'Season') +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))+
+  scale_y_continuous(breaks=c(0, 2, 4, 6, 8, 10))
 pent_f2
 ```
 
@@ -253,5 +171,122 @@ Lewis, J. T. & Boyer, K. E. 2014. “Grazer Functional Roles, Induced Defenses, 
 Reynolds, L. K., Carr, L. A., & Boyer, K. E. 2012. “A Non-Native Amphipod Consumes Eelgrass Inflorescences in San Francisco Bay.” *Marine Ecology Progress Series* 451 (April): 107–18. https://doi.org/10.3354/meps09569. 
 
 
+### Data Simulation Methods:
+
+```{r}
+#vector <- rnorm(100, mean = 1.5, sd = 0.7)
+#vector
+
+# ctrl_gamm <- sample(0:5, 27, replace = TRUE)
+# ctrl_capr <- sample(0:10, 27, replace = TRUE)
+# ctrl_pent <- sample(0:3, 27, replace = TRUE)
+# 
+# ctrl_gamm <- as.matrix(ctrl_gamm)
+# ctrl_capr <- as.matrix(ctrl_capr)
+# ctrl_pent <- as.matrix(ctrl_pent)
+
+```
+
+```{r}
+# tank <- c("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "Ñ", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")
+# 
+# tank_rand1 <- sample(tank, 27)
+# tank_rand1
+# tank_rand2 <- sample(tank, 27)
+# tank_rand3 <- sample(tank, 27)
+# tank_rand4 <- sample(tank, 27)
+# tank_rand5 <- sample(tank, 27)
+# tank_rand6 <- sample(tank, 27)
+# tank_rand7 <- sample(tank, 27)
+# tank_rand8 <- sample(tank, 27)
+# tank_rand9 <- sample(tank, 27)
+# 
+# tank_rand <- rbind(tank_rand1, tank_rand2, tank_rand3, tank_rand4, tank_rand5, tank_rand6, tank_rand7, tank_rand8, tank_rand9)
+# tank_rand
+# tank_rand <- as.matrix(c(apply(tank_rand, 1, c)))
+#for (i in tank) {
+#  print(sample(tank, 27))
+#}
+```
+
+```{r}
+# gamm <- sample(1:50, 243, replace = TRUE)
+# capr <- sample(1:50, 243, replace = TRUE)
+# pent <- sample(0:10, 243, replace = TRUE)
+# 
+# gamm <- as.matrix(gamm)
+# capr <- as.matrix(capr)
+# pent <- as.matrix(pent)
+```
+
+```{r}
+# sp_cym <- runif(n=230, min=3.5, max=10)
+# sp_lept <- runif(n=27, min=3.7, max=11.4)
+# sp_hyps <- runif(n=27, min=3.3, max=9.3)
+# sp_pho <- runif(n=27, min=1.4, max=5.9)
+# 
+# sp_cym <- as.matrix(sp_cym)
+# sp_lept <- as.matrix(sp_lept)
+# sp_hyps <- as.matrix(sp_hyps)
+# sp_pho <- as.matrix(sp_pho)
+
+```
+
+```{r}
+# rec.list <- function(len){
+#   if(length(len) == 1){
+#     vector("list", len)
+#   } else {
+#     lapply(1:len[1], function(...) rec.list(len[-1]))
+#   }
+# }
+```
+
+```{r}
+# set.seed(5094)
+# 
+# season <- c('spring', 'summer', 'fall')
+# tank <- c("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "Ñ", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")
+# treatment <- c("control", "control","control","C_aggregata", "C_aggregata","C_aggregata","2C_aggregata", "2C_aggregata","2C_aggregata","L_armatus", "L_armatus","L_armatus", "2L_armatus","2L_armatus","2L_armatus", "H_guttulata", "H_guttulata","H_guttulata","2H_guttulata","2H_guttulata","2H_guttulata", "P_ornata","P_ornata","P_ornata", "2P_ornata", "2P_ornata", "2P_ornata")
+# 
+# Data_full <- rec.list(c(length(season), 3, length(tank)))
+# 
+# for (x in 1:length(season)) {
+#   for (u in 1:3){#day
+#     for (t in 1:length(tank)){
+#     
+#  pent_loss <- sample(1:10, 1, replace=TRUE)
+#  gamm_loss <- sample(1:50, 1, replace=TRUE)
+#  capr_loss <- sample(1:50, 1, replace=TRUE)
+#  treat <- sample(treatment, 1, replace=FALSE)
+#  # fish1_mass<-
+#  #   if (treat == 'control'){
+#  #   NA
+#  #   } else if (season == 'spring' & treat == 'C_aggregata' ){
+#  #     runif(n=1, min=3.5, max=10)
+#  #   } else {
+#  #     10
+#  #   }
+#  
+#  Data_full[[x]][[u]][[t]] <- data_frame(
+#                               'pent_loss'=pent_loss,
+#                               'gamm_loss'=gamm_loss,
+#                               'capr_loss'= capr_loss, 
+#                               'treatment' = treat)#,
+#                               # 'fish1_mass' = fish1_mass)
+#       } #tank
+#     names(Data_full[[x]][[u]]) <- tank
+#     } #day
+#   } #season
+# names(Data_full) <- season
+# 
+# 
+# 
+# Test <- unlist(Data_full)
+# 
+# Test2 <- data.frame(Reduce(rbind, Data_full))
+# 
+# Test3 <- ldply(Data_full, data_frame())
+```
 
 
